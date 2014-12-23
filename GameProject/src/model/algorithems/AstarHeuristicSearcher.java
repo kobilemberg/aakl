@@ -28,7 +28,7 @@ public class AstarHeuristicSearcher extends HeuristicSearcher {
 		{
 			State current = getStateFromOpenList();
 			if (current.equals(goalState))
-				return Reconstruct_Path( cameFromMap,current);
+				return reconstructPath(current);
 			removeStateFromOpenList(current);
 			addStateToColsedList(current);
 			for(Action action : sd.getActions(current))
@@ -46,15 +46,11 @@ public class AstarHeuristicSearcher extends HeuristicSearcher {
 				else if((!this.isContainsClosedList(next))||(tentativeGScor < g.getDistance(current, next)))
 				{
 					
-					try
-					{
-						if (cameFromMap.containsKey(next.getStateName()))
-						
-						{
-							cameFromMap.remove(next.getStateName());
-						}
-					}catch (Exception e){}
-					cameFromMap.put(next.getStateName(), current);
+					
+					
+					next.setCameFrom_Action(null);
+					
+					//cameFromMap.put(next.getStateName(), current);
 					next.setCameFromState(current);
 					next.setCameFrom_Action(action);
 					(next).setG(tentativeGScor);

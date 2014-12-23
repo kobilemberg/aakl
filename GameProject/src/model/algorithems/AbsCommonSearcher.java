@@ -17,7 +17,7 @@ public abstract class AbsCommonSearcher implements Searcher
 	 SearchDomain sd;
 	 State startState;
 	 State goalState;
-	 protected HashMap<String, State> cameFromMap;
+	protected HashMap<String, State> cameFromMap;
 	 public AbsCommonSearcher(SearchDomain sd) 
 	 {
 		 this.sd =sd;
@@ -58,7 +58,7 @@ public abstract class AbsCommonSearcher implements Searcher
 	 
 	 public boolean isContainsClosedList(State state)
 	 {
-		 return this.closedSet.containsKey(state.getStateName());
+		 return this.closedSet.containsKey(state.toString());
 	 }
 	 
 	 
@@ -73,7 +73,7 @@ public abstract class AbsCommonSearcher implements Searcher
 	 }
 	 
 	 												
-	 public  ArrayList<Action> Reconstruct_Path(HashMap<String, State> came_from, State current) 
+	 public  ArrayList<Action> reconstructPath(State current) 
 	 {	
 		 ArrayList<Action> actionToRet = new ArrayList<Action>();
 			while (current.getCameFromState()!=null&&current.getCameFrom_Action()!=null)

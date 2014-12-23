@@ -204,16 +204,16 @@ public class MazeSearchDomain implements SearchDomain
 		//{
 			if (getMazeMatrixCoordinateValue(xOfState-1, yOfState)!=-1)
 				actionToRet.add(new MazeStateAction(new int [] {-1,0}));
-			if (getMazeMatrixCoordinateValue(xOfState-1, yOfState-1)!=-1)
-				actionToRet.add(new MazeStateAction(new int [] {-1,-1}));
+			//if (getMazeMatrixCoordinateValue(xOfState-1, yOfState-1)!=-1)
+				//actionToRet.add(new MazeStateAction(new int [] {-1,-1}));
 			if (getMazeMatrixCoordinateValue(xOfState, yOfState-1)!=-1)
 				actionToRet.add(new MazeStateAction(new int [] {0,-1}));
 			if (getMazeMatrixCoordinateValue(xOfState+1, yOfState)!=-1)
 				actionToRet.add(new MazeStateAction(new int [] {1,0}));
 			if (getMazeMatrixCoordinateValue(xOfState, yOfState+1)!=-1)
 				actionToRet.add(new MazeStateAction(new int [] {0,1}));
-			if (getMazeMatrixCoordinateValue(xOfState+1, yOfState+1)!=-1)
-				actionToRet.add(new MazeStateAction(new int [] {1,1}));
+			//if (getMazeMatrixCoordinateValue(xOfState+1, yOfState+1)!=-1)
+				//actionToRet.add(new MazeStateAction(new int [] {1,1}));
 			
 			
 			

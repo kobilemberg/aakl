@@ -19,7 +19,7 @@ public class Test {
 	{
 		// new random Maze sized 10 x 10 with 50 walls
 		
-		MazeSearchDomain m = new MazeSearchDomain(10);
+		MazeSearchDomain m = new MazeSearchDomain(5);
 		// print the problem for debug
 		System.out.println(m.toString());
 		AstarHeuristicSearcher aStar=new AstarHeuristicSearcher(m,new AirDistance(),new AirDistance());

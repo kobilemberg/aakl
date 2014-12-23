@@ -45,7 +45,7 @@ public class BFSCommonSearcher extends AbsCommonSearcher {
 			if (t.equals(goal))
 			{
 				
-				return Reconstruct_Path(cameFromMap, current);
+				return reconstructPath(current);
 				
 			}
 			for (Action action: sd.getActions(t))
