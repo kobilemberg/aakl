@@ -1,30 +1,36 @@
 package model;
 
+import model.DomainFactory.DomainCreator;
+import model.SearcherFactory.SearcherCreator;
+
+
 
 
 public class MyModel implements Model 
 {
 
-	@Override
-	public void selectDomain(String domainName) 
+	
+	public void selectDomain(String domainName)
 	{
-		DomainFactory domainCreater = new DomainFactory();
-		DomainCreator name = domainCreater.DomainCreator.get(domainName);
-		if (name!=null)name.create();
-		return;
+		DomainFactory domainCreator = new DomainFactory();
+		DomainCreator name = domainCreator.domainCreator.get(domainName);
+		if (name!=null)
+			name.create();
+		
 	}
 
-	@Override
-	public void selectalgorithm(String algorithmName) {
+	
+	public void selectalgorithm(String algorithmName) 
+	{
 		SearcherFactory algorithm = new SearcherFactory();
-		Creator algorithmN = algorithm.SearcherCreator.get(algorithmName);
-		if (algorithmN!=null)algorithmN.create();
-		return;
-
+		SearcherCreator algorithmSearcher = algorithm.searcherCreator.get(algorithmName);
+		if (algorithmSearcher!=null)
+				algorithmSearcher.create();
 	}
 
 	@Override
-	public void solveDomain() {
+	public void solveDomain() 
+	{
 		
 	}
 

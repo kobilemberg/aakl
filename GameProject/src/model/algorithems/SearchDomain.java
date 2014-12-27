@@ -13,5 +13,5 @@ public interface SearchDomain
 	//State getStatCurrent();
 	//void setStateCurrent(State current);
 	public ArrayList<Action> getActions(State state);
-	double getEvaluationToTheGoal(State current);
+	//double getEvaluationToTheGoal(State current);
 }

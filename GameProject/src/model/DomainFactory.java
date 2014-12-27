@@ -13,21 +13,22 @@ public class DomainFactory
 	}
 	private class MazeDomainCreator implements DomainCreator
 	{
-	 public SearchDomain create() 
-	 {
-	  return new MazeSearchDomain();
+		public SearchDomain create() 
+		{
+			return new MazeSearchDomain();
+		}
 	}
-}
 	
 
-HashMap<String,DomainCreator> domainCreator;
+	HashMap<String,DomainCreator> domainCreator;
 
-public DomainFactory() {
- domainCreator = new HashMap<String,DomainCreator>();
- domainCreator.put("BFS", (DomainCreator) new BFSCommonSearcher(null, null));
- domainCreator.put("Astar", (DomainCreator) new AstarHeuristicSearcher(null, null, null));
- // notice, takes O(n) memory
-}
+	public DomainFactory() 
+	{
+		domainCreator = new HashMap<String,DomainCreator>();
+		domainCreator.put("BFS", (DomainCreator) new BFSCommonSearcher(null, null));
+		domainCreator.put("Astar", (DomainCreator) new AstarHeuristicSearcher(null, null, null));
+		// notice, takes O(n) memory
+	}
 
 
 }

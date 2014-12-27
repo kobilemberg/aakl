@@ -153,55 +153,14 @@ public class MazeSearchDomain implements SearchDomain
 			
 	}
 	
-	/*public ArrayList<Action> getActions(State state) 
-	{
-		ArrayList<Action> actions = new ArrayList<Action>();
-		Integer[] state_co = state.getPlace();
-		int x = -1;
-		int y = -1;
-		
-		 * This while loop is the main program of this function, explanation: 
-		 * 1)
-		 * Checks to see if we're in the boundries of the maze or encountered an
-		 * obstacle - if that's the case don't create a new possible action and
-		 * move to the next possible action 
-		 * 2) Will add to x+1 every iteration -
-		 * that way we will cover a row, once we reach the end of the row,
-		 * change x to -1 and change y(y+1) and start scan a new row. 
-		 * 3) 
-		 * x==0
-		 * and y==0 means that we're in the middle - that's a place that we
-		 * wouldn't like to scan since it's the current state, thus move x
-		 * forward. 3) When created a new action, add it to the action ArrayList
-		 * and set the maze value at the current position to -1 (scanned...)
-		 
-		while ((x <= 1 || y <= 1) && y != 2) {
-			if (getMazeMatrixCoordinateValue((state_co[0] + x), (state_co[1] + y)) != -1) {
-				actions.add(new MazeStateAction(new int[] { x, y }));
-				try{
-				mazeMatrix[state_co[0]][state_co[1]] = -1;
-				}
-				catch(Exception e){}
-			}
-			x++;
-			if (x == 2) {
-				y++;
-				x = -1;
-			} else if (x == 0 && y == 0)
-				x++;
-		}
-		return actions;
-	}*/
+	
 	
 	public ArrayList<Action> getActions(State state) {
 		ArrayList<Action> actionToRet = new ArrayList<Action>();
 		Integer[] statePlace = state.getPlace();
 		int xOfState = statePlace[0];
 		int yOfState = statePlace[1];
-		//int xToAdd = -1;
-		//int yToAdd = -1;
-		//while((xOfState<=1||yToAdd<=1)&&yToAdd!=2)  //y not allowed to be 2 beacause the defenition of action
-		//{
+		
 			if (getMazeMatrixCoordinateValue(xOfState-1, yOfState)!=-1)
 				actionToRet.add(new MazeStateAction(new int [] {-1,0}));
 			//if (getMazeMatrixCoordinateValue(xOfState-1, yOfState-1)!=-1)
@@ -216,38 +175,12 @@ public class MazeSearchDomain implements SearchDomain
 				//actionToRet.add(new MazeStateAction(new int [] {1,1}));
 			
 			
-			
-			
-			
-			//if (getMazeMatrixCoordinateValue(xToAdd+xOfState,yToAdd+yOfState)!=-1)
-			//{
-				//actionToRet.add(new MazeStateAction(new int [] {xToAdd,yToAdd}));
-				//mazeMatrix[xOfState][yOfState]=-1;
-			//System.out.println(1);
-			//}
-			//xToAdd++;//go to new line
-			//if (xToAdd==2)//that means that we scaned all the line
-			//{
-				//yToAdd++;
-				//xToAdd = -1; //start to scan again
-				//System.out.println(2);
-			//}
-			//if ((xToAdd==0)&&(yToAdd==0))//that means that we didnt moved
-			//{
-				//xToAdd++;//start new line
-				//System.out.println(3);
-			//}
 			return actionToRet;
-		//}
-		//return null;
+		
 	}
 
 	
-	public double getEvaluationToTheGoal(State current) 
-	{
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	
 
 	@Override
 	public String toString() {
