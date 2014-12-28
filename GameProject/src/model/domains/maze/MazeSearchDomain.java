@@ -206,7 +206,7 @@ public class MazeSearchDomain implements SearchDomain
 	}
 
 	public String getProblemDescription() {
-		return ("start word: " + getStartState() + ", final word: " + getGoalState()); 
+		return ("start State: " + getStartState() + ", goal State: " + getGoalState()); 
 	}
 	
 

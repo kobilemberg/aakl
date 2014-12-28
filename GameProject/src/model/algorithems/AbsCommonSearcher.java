@@ -28,7 +28,49 @@ public abstract class AbsCommonSearcher implements Searcher
 		 cameFromMap = new HashMap<String, State>();
 		// openList.add(startState);
 	 }
-	 public AbsCommonSearcher() 
+	 public PriorityQueue<State> getOpenList() {
+		return openList;
+	}
+	public void setOpenList(PriorityQueue<State> openList) {
+		this.openList = openList;
+	}
+	public HashMap<String, State> getClosedSet() {
+		return closedSet;
+	}
+	public void setClosedSet(HashMap<String, State> closedSet) {
+		this.closedSet = closedSet;
+	}
+	public int getEvaluatedNodes() {
+		return evaluatedNodes;
+	}
+	public void setEvaluatedNodes(int evaluatedNodes) {
+		this.evaluatedNodes = evaluatedNodes;
+	}
+	public SearchDomain getSd() {
+		return sd;
+	}
+	public void setSd(SearchDomain sd) {
+		this.sd = sd;
+	}
+	public State getStartState() {
+		return startState;
+	}
+	public void setStartState(State startState) {
+		this.startState = startState;
+	}
+	public State getGoalState() {
+		return goalState;
+	}
+	public void setGoalState(State goalState) {
+		this.goalState = goalState;
+	}
+	public HashMap<String, State> getCameFromMap() {
+		return cameFromMap;
+	}
+	public void setCameFromMap(HashMap<String, State> cameFromMap) {
+		this.cameFromMap = cameFromMap;
+	}
+	public AbsCommonSearcher() 
 	 {
 		 
 		 evaluatedNodes=0;  
@@ -109,6 +151,10 @@ public abstract class AbsCommonSearcher implements Searcher
 		return this.evaluatedNodes;
 	}
 	public abstract ArrayList<Action> search(SearchDomain domain);
+	public String getName()
+	{
+		return "AbsCommonSearcher";
+	}
 	 
 }
 

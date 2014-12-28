@@ -19,7 +19,10 @@ public abstract class HeuristicSearcher extends AbsCommonSearcher {
 		this.g = g;	
 	}
 	
-	
+	public HeuristicSearcher()
+	{
+		super();
+	}
 	public void setDistance(Distance h,Distance g) {
 		this.h = h;
 		this.g = g;
@@ -27,5 +30,30 @@ public abstract class HeuristicSearcher extends AbsCommonSearcher {
 	
 	@Override
 	public abstract ArrayList<Action> search(SearchDomain domain);
+
+	public Distance getH() {
+		return h;
+	}
+
+	public void setH(Distance h) {
+		this.h = h;
+	}
+
+	public Distance getG() {
+		return g;
+	}
+
+	public void setG(Distance g) {
+		this.g = g;
+	}
+
+	public HashSet<String> getExistsInTheQueue() {
+		return existsInTheQueue;
+	}
+
+	public void setExistsInTheQueue(HashSet<String> existsInTheQueue) {
+		this.existsInTheQueue = existsInTheQueue;
+	}
+	
 
 }

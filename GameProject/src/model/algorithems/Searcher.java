@@ -5,5 +5,5 @@ public interface Searcher
 {
 	public ArrayList<Action> search(SearchDomain domain);
 	public int getNumOfEvaluatedNodes();
-
+	public String getName();
 }

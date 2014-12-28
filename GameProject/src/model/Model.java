@@ -6,7 +6,7 @@ public interface Model
 
 {
 	void selectDomain(String domainName);
-	void selectalgorithm(String algorithmName);
+	void selectAlgorithm(String algorithmName);
 	void solveDomain();
 	Solution getSolution();
 	void addObserver(Observer o);

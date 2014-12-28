@@ -3,24 +3,38 @@ package model.algorithems;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.PriorityQueue;
 
 import model.algorithms.comparators.AlgComperator;
+import model.algorithms.distances.AirDistance;
 
 public class AstarHeuristicSearcher extends HeuristicSearcher {
+	
+	
 
 	public AstarHeuristicSearcher(SearchDomain sd, Distance h, Distance g) 
 	{
 		super(sd, h, g);
 		//startComparator(new AlgComperator());
 	}
+	public AstarHeuristicSearcher() 
+	{
+		openList = new PriorityQueue<State>();
+		closedSet = new HashMap<String, State>();
+	}
 
 	public ArrayList<Action> search(SearchDomain domain)
 	{
-		
+		this.h = new AirDistance();
+		this.g = new AirDistance();
+		this.setSearchDomain(domain);
+		startState = domain.getStartState();
+		goalState = domain.getGoalState();
 		
 		ArrayList<Action> pathToRet = new ArrayList<Action>();
-		
+		System.out.println("StartState,"+startState.toString());
 		addStateToOpenList(startState);
+		
 		startState.setG(0);
 		startState.setF(h.getDistance(startState, goalState));
 		startState.setCameFromState(startState);
@@ -57,7 +71,8 @@ public class AstarHeuristicSearcher extends HeuristicSearcher {
 					(next).setF(this.h.getDistance(next,goalState)+this.g.getDistance(next, next));
 					if (!existsInTheQueue.contains(next.getStateName()))
 					{
-						this.addStateToOpenList(next);
+						System.out.println(next==null);
+						boolean c = this.addStateToOpenList(next);
 						existsInTheQueue.add(next.getStateName());
 					}
 					
@@ -77,5 +92,9 @@ public class AstarHeuristicSearcher extends HeuristicSearcher {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	public String getName() {
+		return "AstarHeuristicSearcher";
+	}
+	
 
 }

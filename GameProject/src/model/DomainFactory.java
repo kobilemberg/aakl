@@ -8,18 +8,18 @@ import model.domains.maze.MazeSearchDomain;
 
 
 public class DomainFactory {
-	private HashMap<String, DomainCreator> Domain;
+	public HashMap<String, DomainCreator> domainCreator;
 	
 	public DomainFactory()
 	{
-		Domain = new HashMap<String, DomainCreator>();
-		Domain.put("MazeGameDomain", new MazeGameDomainCreator());
+		domainCreator = new HashMap<String, DomainCreator>();
+		domainCreator.put("MazeGameDomain", new MazeGameDomainCreator());
 		
 	}
 	
 	public SearchDomain CreateDomain(String DomainName)
 	{
-		DomainCreator creator = Domain.get(DomainName);
+		DomainCreator creator = domainCreator.get(DomainName);
 		SearchDomain Domain = null;
 		if (creator != null)  {
 			Domain = creator.create();			
@@ -27,7 +27,7 @@ public class DomainFactory {
 		return Domain;
 	}
 	
-	private interface DomainCreator
+	public interface DomainCreator
 	{
 		SearchDomain create();
 	}

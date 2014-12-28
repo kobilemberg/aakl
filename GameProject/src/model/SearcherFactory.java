@@ -20,11 +20,12 @@ public class SearcherFactory
 			return new BFSCommonSearcher(null, null);
 		}
 	}
+	
 	private class AstarSearcherCreator implements SearcherCreator
 	{
 		public Searcher create() 
 		{
-			return new AstarHeuristicSearcher(null, null, null);
+			return new AstarHeuristicSearcher();
 		}
 	}
 	public HashMap<String,SearcherCreator> searcherCreator;
@@ -35,6 +36,15 @@ public class SearcherFactory
 		searcherCreator.put("BFS",new BFSSearcherCreator());
 		searcherCreator.put("Astar", new AstarSearcherCreator());
  
+	}
+	public Searcher createAlgorithm(String algorithmName)
+	{
+		SearcherCreator creator = searcherCreator.get(algorithmName);
+		Searcher searcher = null;
+		if (creator != null)  {
+			searcher = creator.create();			
+		}
+		return searcher;
 	}
 
 }

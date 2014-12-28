@@ -79,4 +79,8 @@ public class BFSCommonSearcher extends AbsCommonSearcher {
 		state.setCameFromState(parent);
 	}
 
+	public String getName() {
+		return "bfs";
+	}
+
 }

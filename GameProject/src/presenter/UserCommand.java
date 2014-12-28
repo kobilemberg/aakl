@@ -51,7 +51,7 @@ public class UserCommand {
 	private class SelectAlgorithmCommand implements Command
 	{
 		public Model doCommand(Model model, String args) {
-			model.selectalgorithm(args);
+			model.selectAlgorithm(args);
 			return model;
 		}		
 	}
