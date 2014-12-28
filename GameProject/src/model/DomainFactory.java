@@ -1,34 +1,45 @@
 package model;
+
 import java.util.HashMap;
 
-import model.algorithems.AstarHeuristicSearcher;
-import model.algorithems.BFSCommonSearcher;
 import model.algorithems.SearchDomain;
 import model.domains.maze.MazeSearchDomain;
-public class DomainFactory 
-{
-	public interface DomainCreator
+
+
+
+public class DomainFactory {
+	private HashMap<String, DomainCreator> Domain;
+	
+	public DomainFactory()
 	{
-		public SearchDomain create();
+		Domain = new HashMap<String, DomainCreator>();
+		Domain.put("MazeGameDomain", new MazeGameDomainCreator());
+		
 	}
-	private class MazeDomainCreator implements DomainCreator
+	
+	public SearchDomain CreateDomain(String DomainName)
+	{
+		DomainCreator creator = Domain.get(DomainName);
+		SearchDomain Domain = null;
+		if (creator != null)  {
+			Domain = creator.create();			
+		}
+		return Domain;
+	}
+	
+	private interface DomainCreator
+	{
+		SearchDomain create();
+	}
+	
+	private class MazeGameDomainCreator implements DomainCreator
 	{
 		public SearchDomain create() 
 		{
+			// TODO Auto-generated method stub
 			return new MazeSearchDomain();
-		}
+		}		
 	}
 	
-
-	HashMap<String,DomainCreator> domainCreator;
-
-	public DomainFactory() 
-	{
-		domainCreator = new HashMap<String,DomainCreator>();
-		domainCreator.put("BFS", (DomainCreator) new BFSCommonSearcher(null, null));
-		domainCreator.put("Astar", (DomainCreator) new AstarHeuristicSearcher(null, null, null));
-		// notice, takes O(n) memory
-	}
-
-
+	
 }

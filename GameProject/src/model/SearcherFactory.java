@@ -32,8 +32,8 @@ public class SearcherFactory
 	public SearcherFactory() 
 	{
 		searcherCreator = new HashMap<String,SearcherCreator>();
-		searcherCreator.put("BFS", (SearcherCreator) new BFSCommonSearcher(null, null));
-		searcherCreator.put("Astar", (SearcherCreator) new AstarHeuristicSearcher(null, null, null));
+		searcherCreator.put("BFS",new BFSSearcherCreator());
+		searcherCreator.put("Astar", new AstarSearcherCreator());
  
 	}
 

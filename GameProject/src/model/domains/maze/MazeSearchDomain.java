@@ -14,8 +14,8 @@ public class MazeSearchDomain implements SearchDomain
 {
 	
 	int [][] mazeMatrix;
-	private CommonMazeState startState;
-	private CommonMazeState goalState;
+	private State startState;
+	private State goalState;
 	private int size;
 	
 	public MazeSearchDomain(int size) 
@@ -86,7 +86,7 @@ public class MazeSearchDomain implements SearchDomain
 	}
 
 	
-	public CommonMazeState getStartState() {
+	public State getStartState() {
 		return this.startState;
 	}
 
@@ -187,6 +187,26 @@ public class MazeSearchDomain implements SearchDomain
 		return "MazeSearchDomain [mazeMatrix=" 
 				+ ", startState=" + startState.getStateName() + ", goalState=" + goalState.getStateName()
 				+ ", size=" + size + "]\n" + getStringMazeMatrix();
+	}
+
+	public void setStartState(State state) 
+	{
+		this.startState = state;
+		
+	}
+
+	public void setGoalState(State state) {
+		this.goalState = state;
+		
+	}
+
+	public void setSize(int size) {
+		this.size = size;
+		
+	}
+
+	public String getProblemDescription() {
+		return ("start word: " + getStartState() + ", final word: " + getGoalState()); 
 	}
 	
 

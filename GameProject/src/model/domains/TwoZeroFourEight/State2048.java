@@ -24,7 +24,7 @@ public abstract class State2048 extends CommonState
 		// TODO Auto-generated constructor stub
 	}
 
-	public State getCameFromState()
+/*	public State getCameFromState()
 	{
 		return this.CameFromState;
 	}
@@ -38,13 +38,13 @@ public abstract class State2048 extends CommonState
 	{
 		return stateName;
 	}
-	
+	*/
 	
 	
 	/* (non-Javadoc)
 	 * @see model.algorithems.State#setStateName(java.lang.String)
 	 */
-	
+	/*
 	public void setStateName(String stateName) 
 	{
 		this.stateName = stateName;
@@ -71,25 +71,25 @@ public abstract class State2048 extends CommonState
 		return f;
 	}
 
-	
+	*/
 	
 	/* (non-Javadoc)
 	 * @see model.algorithems.State#getCameFrom_Action()
 	 */
 	
-	public Action getCameFrom_Action() 
+/*	public Action getCameFrom_Action() 
 	{
 		return cameFrom_Action;
 	}
 
-	/* (non-Javadoc)
+	 (non-Javadoc)
 	 * @see model.algorithems.State#setCameFrom_Action(model.algorithems.Action)
-	 */
+	 
 	
 	public void setCameFrom_Action(Action cameFrom_Action) 
 	{
 		this.cameFrom_Action = cameFrom_Action;
-	}
+	}*/
 
 	// what is the state's evaluation with respect to the goal
 	
@@ -113,15 +113,15 @@ public abstract class State2048 extends CommonState
 	/* (non-Javadoc)
 	 * @see model.algorithems.State#equals(java.lang.Object)
 	 */
-	
+/*	
 	public boolean equals(State o)
 	{
 		return this.stateName.equals(o.getStateName());		
 	}
 
-	/* (non-Javadoc)
+	 (non-Javadoc)
 	 * @see model.algorithems.State#toString()
-	 */
+	 
 	
 	@Override
 	public String toString() 
@@ -131,7 +131,7 @@ public abstract class State2048 extends CommonState
 	}
 
 	
-	
+	*/
 
 
 

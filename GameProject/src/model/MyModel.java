@@ -1,21 +1,41 @@
 package model;
 
-import model.DomainFactory.DomainCreator;
+import java.util.ArrayList;
+import java.util.Observable;
+
+
 import model.SearcherFactory.SearcherCreator;
+import model.algorithems.Action;
+import model.algorithems.SearchDomain;
+import model.algorithems.Searcher;
 
 
 
 
-public class MyModel implements Model 
+public class MyModel extends Observable implements Model 
 {
-
+	private SearchDomain searchDomain;
+	private Searcher searcher;
+	private SearcherFactory searcherFactory;
+	private Solution solution;
+	private SolutionManager solutionManager;
+	private DomainFactory domainFactory;
 	
-	public void selectDomain(String domainName)
+	public MyModel()
 	{
-		DomainFactory domainCreator = new DomainFactory();
-		DomainCreator name = domainCreator.domainCreator.get(domainName);
-		if (name!=null)
-			name.create();
+		searcherFactory = new SearcherFactory();
+		solutionManager = SolutionManager.getInstance();
+		domainFactory = new DomainFactory();
+	}
+	
+	public void selectDomain(String args) 
+	{
+		// TODO Auto-generated method stub
+		String[] arr = args.split(":");
+		String domainName = arr[0];
+		String domainArgs = arr[1];
+		searchDomain = domainFactory.CreateDomain(domainName);
+		
 		
 	}
 
@@ -28,16 +48,30 @@ public class MyModel implements Model
 				algorithmSearcher.create();
 	}
 
-	@Override
-	public void solveDomain() 
-	{
+	
+	public void solveDomain() {	
+		String problemDescription = searchDomain.getProblemDescription();
+		this.solution = solutionManager.getSolution(problemDescription);
 		
+		if (solution == null) {		
+			ArrayList<Action> actions = searcher.search(searchDomain);
+			solution = new Solution();
+			solution.setActions(actions);
+			solutionManager.addSolution(solution);
+		}
+		
+		this.setChanged();
+		this.notifyObservers();
 	}
 
-	//@Override
-	//public Solution getSolution() {
-	//	// TODO Auto-generated method stub
-	//	return algorithmN(D());
-	//}
+	public Solution getSolution() {
+		// TODO Auto-generated method stub
+		return solution;
+	}
+
+	public void doTask() {
+		// TODO Auto-generated method stub
+		solveDomain();
+	}
 
 }

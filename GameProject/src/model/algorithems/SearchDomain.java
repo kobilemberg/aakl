@@ -10,8 +10,9 @@ public interface SearchDomain
 {
 	State getStartState();
 	State getGoalState();
-	//State getStatCurrent();
-	//void setStateCurrent(State current);
+	void setStartState(State state);
+	void setGoalState(State state);
+	void setSize(int size);
 	public ArrayList<Action> getActions(State state);
-	//double getEvaluationToTheGoal(State current);
+	public String getProblemDescription();
 }
