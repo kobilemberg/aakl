@@ -57,16 +57,13 @@ public class MyModel extends Observable implements Model
 	
 	public void solveDomain() {	
 		String problemDescription = searchDomain.getProblemDescription();
-		System.out.println(problemDescription);
+		
 		this.solution = solutionManager.getSolution(problemDescription);
 		
 		if (solution == null) {	
-			System.out.println(searchDomain);
-			System.out.println(searchDomain.getStartState());
-			System.out.println(searchDomain.getGoalState());
-			System.out.println(searcher==null);
+			
 			ArrayList<Action> actions = searcher.search(searchDomain);
-			System.out.println(searchDomain);
+			
 			solution = new Solution();
 			solution.setActions(actions);
 			solutionManager.addSolution(solution);

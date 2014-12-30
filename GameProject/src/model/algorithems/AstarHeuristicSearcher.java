@@ -33,7 +33,7 @@ public class AstarHeuristicSearcher extends HeuristicSearcher {
 		goalState = domain.getGoalState();
 		
 		ArrayList<Action> pathToRet = new ArrayList<Action>();
-		System.out.println("StartState,"+startState.toString());
+		
 		addStateToOpenList(startState);
 		
 		startState.setG(0);
@@ -72,7 +72,7 @@ public class AstarHeuristicSearcher extends HeuristicSearcher {
 					(next).setF(this.h.getDistance(next,goalState)+this.g.getDistance(next, next));
 					if (!existsInTheQueue.contains(next.getStateName()))
 					{
-						System.out.println(next==null);
+						
 						boolean c = this.addStateToOpenList(next);
 						existsInTheQueue.add(next.getStateName());
 					}
