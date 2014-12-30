@@ -49,10 +49,10 @@ public class MyModel extends Observable implements Model
 		//System.out.println(searcher.getSd().toString());
 		
 	}*/
-	public void selectAlgorithm(String algorithmName) {
+	public void selectAlgorithem(String algorithemName) {
 		// TODO Auto-generated method stub
 		System.out.println("Done!!!");
-		 searcher = searcherFactory.createAlgorithm(algorithmName);
+		 searcher = searcherFactory.createAlgorithem(algorithemName);
 	}
 	
 	public void solveDomain() {	
@@ -86,9 +86,9 @@ public class MyModel extends Observable implements Model
 		solveDomain();
 	}
 
-	public void selectalgorithm(String algorithmName) {
+	public void selectalgorithm(String algorithemName) {
 		// TODO Auto-generated method stub
-		Searcher searcher = searcherFactory.createAlgorithm(algorithmName);
+		Searcher searcher = searcherFactory.createAlgorithem(algorithemName);
 		
 	}
 

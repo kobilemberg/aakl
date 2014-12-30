@@ -14,7 +14,7 @@ public class UserCommand {
 	public UserCommand()
 	{
 		commands.put("SelectDomain", new SelectDomainCommand());
-		commands.put("SelectAlgorithm", new SelectAlgorithmCommand());
+		commands.put("SelectAlgorithem", new SelectAlgorithemCommand());
 		commands.put("SolveDomain", new SolveDomainCommand());
 		commands.put("SolveDomainInThread", new SolveDomainInThread());
 	}
@@ -48,10 +48,10 @@ public class UserCommand {
 		}		
 	}
 	
-	private class SelectAlgorithmCommand implements Command
+	private class SelectAlgorithemCommand implements Command
 	{
 		public Model doCommand(Model model, String args) {
-			model.selectAlgorithm(args);
+			model.selectAlgorithem(args);
 			return model;
 		}		
 	}

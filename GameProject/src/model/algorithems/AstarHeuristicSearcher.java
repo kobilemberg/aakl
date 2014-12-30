@@ -15,12 +15,13 @@ public class AstarHeuristicSearcher extends HeuristicSearcher {
 	public AstarHeuristicSearcher(SearchDomain sd, Distance h, Distance g) 
 	{
 		super(sd, h, g);
-		//startComparator(new AlgComperator());
+		startComparator(new AlgComperator());
 	}
 	public AstarHeuristicSearcher() 
 	{
-		openList = new PriorityQueue<State>();
-		closedSet = new HashMap<String, State>();
+		super();
+		startComparator(new AlgComperator());
+		
 	}
 
 	public ArrayList<Action> search(SearchDomain domain)

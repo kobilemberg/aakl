@@ -37,9 +37,9 @@ public class SearcherFactory
 		searcherCreator.put("Astar", new AstarSearcherCreator());
  
 	}
-	public Searcher createAlgorithm(String algorithmName)
+	public Searcher createAlgorithem(String algorithemName)
 	{
-		SearcherCreator creator = searcherCreator.get(algorithmName);
+		SearcherCreator creator = searcherCreator.get(algorithemName);
 		Searcher searcher = null;
 		if (creator != null)  {
 			searcher = creator.create();			
