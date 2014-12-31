@@ -37,7 +37,10 @@ public class DomainFactory {
 		public SearchDomain create() 
 		{
 			// TODO Auto-generated method stub
-			return new MazeSearchDomain();
+			MazeSearchDomain domain = new MazeSearchDomain();
+			domain.printMaze();
+			return domain;
+			
 		}		
 	}
 	

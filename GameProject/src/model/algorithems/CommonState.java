@@ -26,6 +26,7 @@ public abstract class CommonState implements State,Comparator<State>
 		this.g = g;
 		this.cameFrom_Action=null;
 		this.f= f;
+		this.CameFromState = null;
 	}
 	
 	public CommonState(String stateName,double f,double g,State cameFromState) 
@@ -52,12 +53,7 @@ public abstract class CommonState implements State,Comparator<State>
 		return stateName;
 	}
 	
-	
-	
-	/* (non-Javadoc)
-	 * @see model.algorithems.State#setStateName(java.lang.String)
-	 */
-	
+
 	public void setStateName(String stateName) 
 	{
 		this.stateName = stateName;
@@ -86,30 +82,21 @@ public abstract class CommonState implements State,Comparator<State>
 
 	
 	
-	/* (non-Javadoc)
-	 * @see model.algorithems.State#getCameFrom_Action()
-	 */
+	
 	
 	public Action getCameFrom_Action() 
 	{
 		return cameFrom_Action;
 	}
 
-	/* (non-Javadoc)
-	 * @see model.algorithems.State#setCameFrom_Action(model.algorithems.Action)
-	 */
+	
 	
 	public void setCameFrom_Action(Action cameFrom_Action) 
 	{
 		this.cameFrom_Action = cameFrom_Action;
 	}
 
-	// what is the state's evaluation with respect to the goal
-	
-	/* (non-Javadoc)
-	 * @see model.algorithems.State#getPlace()
-	 */
-	
+		
 	public Integer[] getPlace()
 	{
 		
@@ -123,18 +110,13 @@ public abstract class CommonState implements State,Comparator<State>
 	}
 	
 	
-	/* (non-Javadoc)
-	 * @see model.algorithems.State#equals(java.lang.Object)
-	 */
+	
 	
 	public boolean equals(State o)
 	{
 		return this.stateName.equals(o.getStateName());		
 	}
 
-	/* (non-Javadoc)
-	 * @see model.algorithems.State#toString()
-	 */
 	
 	@Override
 	public String toString() 

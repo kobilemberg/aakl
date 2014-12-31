@@ -1,6 +1,7 @@
 package model.algorithems;
-import java.util.Comparator;
-public interface State {
+
+public interface State 
+{
 
 	public  String getStateName();
 

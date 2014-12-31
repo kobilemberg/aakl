@@ -1,13 +1,10 @@
 package model.domains.maze;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
 
+import java.util.ArrayList;
 import model.algorithems.Action;
 import model.algorithems.SearchDomain;
 import model.algorithems.State;
-
 import java.util.Random;
 
 public class MazeSearchDomain implements SearchDomain 
@@ -29,7 +26,11 @@ public class MazeSearchDomain implements SearchDomain
 	
 	public MazeSearchDomain() 
 	{
-		new MazeSearchDomain(20);
+		this.size = 10;
+		mazeMatrix = new int[size][size];
+		putTheCheesInTheMaze();
+		putTheMouseInTheMaze();
+		buildMazeMatrix();
 	}
 	
 	public void buildMazeMatrix()
@@ -70,6 +71,16 @@ public class MazeSearchDomain implements SearchDomain
 		this.setStartState(    new CommonMazeState(    "("+Integer.toString(objArr[0])+","+Integer.toString(objArr[1])+")"   ,0,0)   );
 		this.mazeMatrix[objArr[0]][objArr[1]]  = 1;
 	}
+	
+	public void putTheCheesInTheMaze()
+	{
+		Integer [] objArr = this.giveMePlace();
+		this.setGoalState(    new CommonMazeState(    "("+Integer.toString(objArr[0])+","+Integer.toString(objArr[1])+")"   ,0,0)   );
+		this.mazeMatrix[objArr[0]][objArr[1]]  = 2;
+	}
+	
+	
+	
 	private void setStartState(CommonMazeState commonMazeState) {
 		this.startState = commonMazeState;
 		
@@ -78,13 +89,31 @@ public class MazeSearchDomain implements SearchDomain
 		this.goalState = goalState;
 	}
 
-	public void putTheCheesInTheMaze()
+	
+	public void setStartState(State state) 
 	{
-		Integer [] objArr = this.giveMePlace();
-		this.setGoalState(    new CommonMazeState(    "("+Integer.toString(objArr[0])+","+Integer.toString(objArr[1])+")"   ,0,0)   );
-		this.mazeMatrix[objArr[0]][objArr[1]]  = 2;
+		this.startState = state;
+		
 	}
 
+	public void setGoalState(State state) 
+	{
+		this.goalState = state;
+		
+	}
+
+	public void setSize(int size) 
+	{
+		this.size = size;
+		
+	}
+
+	public String getProblemDescription() 
+	{
+		//return ("start State: " + getStartState() + ", goal State: " + getGoalState());
+		return getStringMazeMatrix();
+	}
+	
 	
 	public State getStartState() {
 		return this.startState;
@@ -119,40 +148,7 @@ public class MazeSearchDomain implements SearchDomain
 		}
 	}
 	
-	
-	
-	
-	public void printMaze()
-	{
-		System.out.println("Mouse at "+getStartState().getStateName());
-		System.out.println("Chees at "+getGoalState().getStateName());
-		for (int i = 0; i < size; i++) 
-		{
-			for (int j = 0; j < size; j++) 
-			{
-				System.out.print(mazeMatrix[i][j] + "\t");
-			}
-			System.out.println();
-		}
-		
-	}
-	public String getStringMazeMatrix()
-	{
-		String stringToRet = "";
-		stringToRet += "Mouse at "+getStartState().getStateName() +"\n";
-		stringToRet += "Cheese at "+getGoalState().getStateName() +"\n";
-		for (int i = 0; i < size; i++) 
-		{
-			for (int j = 0; j < size; j++) 
-			{
-				stringToRet+=(mazeMatrix[i][j] + "\t");
-			}
-			stringToRet+="\n";
-		}
-		return stringToRet;
-			
-	}
-	
+
 	
 	
 	public ArrayList<Action> getActions(State state) {
@@ -181,6 +177,30 @@ public class MazeSearchDomain implements SearchDomain
 
 	
 	
+	
+	
+	public void printMaze()
+	{
+		System.out.println(getStringMazeMatrix());
+		
+	}
+	public String getStringMazeMatrix()
+	{
+		String stringToRet = "";
+		stringToRet += "Mouse at "+getStartState().getStateName() +"\n";
+		stringToRet += "Cheese at "+getGoalState().getStateName() +"\n";
+		for (int i = 0; i < size; i++) 
+		{
+			for (int j = 0; j < size; j++) 
+			{
+				stringToRet+=(mazeMatrix[i][j] + "\t");
+			}
+			stringToRet+="\n";
+		}
+		return stringToRet;
+			
+	}
+	
 
 	@Override
 	public String toString() {
@@ -189,25 +209,6 @@ public class MazeSearchDomain implements SearchDomain
 				+ ", size=" + size + "]\n" + getStringMazeMatrix();
 	}
 
-	public void setStartState(State state) 
-	{
-		this.startState = state;
-		
-	}
-
-	public void setGoalState(State state) {
-		this.goalState = state;
-		
-	}
-
-	public void setSize(int size) {
-		this.size = size;
-		
-	}
-
-	public String getProblemDescription() {
-		return ("start State: " + getStartState() + ", goal State: " + getGoalState()); 
-	}
 	
 
 }

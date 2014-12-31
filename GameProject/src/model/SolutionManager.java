@@ -41,6 +41,7 @@ public class SolutionManager {
 		try 
 		{
 			 out = new FileOutputStream(FILE_NAME);
+			 
 			 oos = new ObjectOutputStream(out);
 			 oos.writeObject(solutionsMap);
 			

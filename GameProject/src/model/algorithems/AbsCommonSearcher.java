@@ -18,17 +18,111 @@ public abstract class AbsCommonSearcher implements Searcher
 	 State startState;
 	 State goalState;
 	protected HashMap<String, State> cameFromMap;
-	 public AbsCommonSearcher(SearchDomain sd) 
-	 {
-		 this.sd =sd;
-		 this.startState = sd.getStartState();
-		 this.goalState= sd.getGoalState();
+	
+	public AbsCommonSearcher() 
+	{
+		 
 		 evaluatedNodes=0;
 		 startComparator(new AlgComperator());
 		 cameFromMap = new HashMap<String, State>();
-		// openList.add(startState);
-	 }
-	 public PriorityQueue<State> getOpenList() {
+	}
+	
+	public AbsCommonSearcher(SearchDomain sd) 
+	{
+		 this.sd =sd;
+		 startState = sd.getStartState();
+		 goalState= sd.getGoalState();
+		 evaluatedNodes=0;
+		 startComparator(new AlgComperator());
+		 cameFromMap = new HashMap<String, State>();
+		
+	}
+
+	public abstract ArrayList<Action> search(SearchDomain domain);
+	
+	public  ArrayList<Action> reconstructPath(State current) 
+	{	
+		 ArrayList<Action> actionToRet = new ArrayList<Action>();
+			while (current.getCameFromState()!=null&&current.getCameFrom_Action()!=null)
+			{
+
+				actionToRet.add(current.getCameFrom_Action());
+				current = current.getCameFromState();
+			}
+			return actionToRet;
+	}
+	 	
+	public void startComparator(Comparator<State> comp)
+	{
+		evaluatedNodes=0; 
+		openList = new PriorityQueue<State>(1, comp);
+		closedSet = new HashMap<String, State>();
+	}
+	
+	public int getNumOfEvaluatedNodes()
+	{
+		
+		return this.evaluatedNodes;
+	}
+	
+	
+	
+	public String getName()
+	{
+		return "AbsCommonSearcher";
+	}
+	 	
+//closed list and open list methods:
+	
+	public void addStateToColsedList(State state)
+	{
+		 if(!this.closedSet.containsKey(state.getStateName()))
+		 {
+			 this.closedSet.put(state.getStateName(), state);
+		 }
+	}
+	 
+	public boolean isContainsClosedList(State state)
+	{
+		 return this.closedSet.containsKey(state.toString());
+	}
+	  
+	 
+	public boolean addStateToOpenList(State state)
+	{
+		
+		return this.openList.add(state);
+		
+	}
+	 	 
+	public void removeStateFromOpenList(State state)
+	{
+		 openList.remove(state);
+	}
+	 
+	public State getStateFromOpenList()
+	{
+		 this.evaluatedNodes++;
+		 return this.openList.poll();
+	}
+	 
+	public boolean isEmptyOpenList()
+	{
+		 return this.openList.isEmpty();
+	}
+	
+	public State getStateFromColsedList(String state_name)
+	{
+		return this.closedSet.get(state_name);
+	}
+	  
+	 
+	
+// Getters and setters	
+	
+	
+	public PriorityQueue<State> getOpenList() 
+	{
 		return openList;
 	}
 	public void setOpenList(PriorityQueue<State> openList) {
@@ -70,91 +164,12 @@ public abstract class AbsCommonSearcher implements Searcher
 	public void setCameFromMap(HashMap<String, State> cameFromMap) {
 		this.cameFromMap = cameFromMap;
 	}
-	public AbsCommonSearcher() 
-	 {
-		 
-		 evaluatedNodes=0;  
-	 }
-	 public void startComparator(Comparator<State> comp)
-	 {
-		evaluatedNodes=0; 
-		openList = new PriorityQueue<State>(1, comp);
-		closedSet = new HashMap<String, State>();
-	 }
-	 public void setSearchDomain(SearchDomain sd)
-	 {
-		 this.sd = sd;
-	 }
-	 public State getStateFromColsedList(String state_name)
-	 {
-		 return this.closedSet.get(state_name);
-	 }
-	 
-	 public void addStateToColsedList(State state)
-	 {
-		 if(!this.closedSet.containsKey(state.getStateName()))
-		 {
-			 this.closedSet.put(state.getStateName(), state);
-		 }
-	 }
-	 
-	 public boolean isContainsClosedList(State state)
-	 {
-		 return this.closedSet.containsKey(state.toString());
-	 }
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 public boolean addStateToOpenList(State state)
-	 {
-		 return this.openList.add(state);
-	 }
-	 
-	 												
-	 public  ArrayList<Action> reconstructPath(State current) 
-	 {	
-		 ArrayList<Action> actionToRet = new ArrayList<Action>();
-			while (current.getCameFromState()!=null&&current.getCameFrom_Action()!=null)
-			{
-
-				actionToRet.add(current.getCameFrom_Action());
-				current = current.getCameFromState();
-			}
-			return actionToRet;
-	}
-	 
-	 
-	 
-	 public void removeStateFromOpenList(State state)
-	 {
-		 this.openList.remove(state);
-	 }
-	 
-	 public State getStateFromOpenList()
-	 {
-		 this.evaluatedNodes++;
-		 return this.openList.poll();
-	 }
-	 
-	 public boolean isEmptyOpenList()
-	 {
-		 return this.openList.isEmpty();
-	 }
-	 
-	 public int getNumOfEvaluatedNodes()
-	 {
-		// TODO Auto-generated method stub
-		return this.evaluatedNodes;
-	}
-	public abstract ArrayList<Action> search(SearchDomain domain);
-	public String getName()
+	
+	public void setSearchDomain(SearchDomain sd)
 	{
-		return "AbsCommonSearcher";
+		 this.sd = sd;
 	}
-	 
+	
+
 }
 

@@ -1,17 +1,14 @@
 package model.algorithems;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.PriorityQueue;
+
 
 import model.algorithms.comparators.AlgComperator;
 import model.algorithms.distances.AirDistance;
 
-public class AstarHeuristicSearcher extends HeuristicSearcher {
+public class AstarHeuristicSearcher extends HeuristicSearcher 
+{
 	
-	
-
 	public AstarHeuristicSearcher(SearchDomain sd, Distance h, Distance g) 
 	{
 		super(sd, h, g);
@@ -23,7 +20,10 @@ public class AstarHeuristicSearcher extends HeuristicSearcher {
 		startComparator(new AlgComperator());
 		
 	}
-
+	public String getName() 
+	{
+		return "AstarHeuristicSearcher";
+	}
 	public ArrayList<Action> search(SearchDomain domain)
 	{
 		this.h = new AirDistance();
@@ -31,11 +31,7 @@ public class AstarHeuristicSearcher extends HeuristicSearcher {
 		this.setSearchDomain(domain);
 		startState = domain.getStartState();
 		goalState = domain.getGoalState();
-		
-		ArrayList<Action> pathToRet = new ArrayList<Action>();
-		
 		addStateToOpenList(startState);
-		
 		startState.setG(0);
 		startState.setF(h.getDistance(startState, goalState));
 		startState.setCameFromState(startState);
@@ -50,8 +46,7 @@ public class AstarHeuristicSearcher extends HeuristicSearcher {
 			{
 				State next = action.doAction(current);
 				
-				//next.setCameFromState(current);
-				//next.setCameFrom_Action(action);
+				
 				double tentativeGScor = current.getG()+next.getG();
 				if ((this.isContainsClosedList(next))&&(tentativeGScor>=next.getG()))
 				{
@@ -65,7 +60,7 @@ public class AstarHeuristicSearcher extends HeuristicSearcher {
 					
 					next.setCameFrom_Action(null);
 					
-					//cameFromMap.put(next.getStateName(), current);
+					
 					next.setCameFromState(current);
 					next.setCameFrom_Action(action);
 					(next).setG(tentativeGScor);
@@ -73,7 +68,8 @@ public class AstarHeuristicSearcher extends HeuristicSearcher {
 					if (!existsInTheQueue.contains(next.getStateName()))
 					{
 						
-						boolean c = this.addStateToOpenList(next);
+						
+						addStateToOpenList(next);
 						existsInTheQueue.add(next.getStateName());
 					}
 					
@@ -82,20 +78,8 @@ public class AstarHeuristicSearcher extends HeuristicSearcher {
 		}
 		
 		
-		
+		System.out.println(sd.toString());
 		System.out.println("unResolved maze");
 		return null;
 	}
-	
-	
-	
-	public int getNumOfEvaluatedNodes() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	public String getName() {
-		return "AstarHeuristicSearcher";
-	}
-	
-
 }

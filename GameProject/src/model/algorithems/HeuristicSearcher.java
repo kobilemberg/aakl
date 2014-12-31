@@ -1,9 +1,11 @@
 package model.algorithems;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+
 
 public abstract class HeuristicSearcher extends AbsCommonSearcher {
-	//HeuritiscsFuncForState HeuristicFuncAdapter;
+
 	
 	protected Distance h;
 	protected Distance g;
@@ -23,6 +25,7 @@ public abstract class HeuristicSearcher extends AbsCommonSearcher {
 	{
 		super();
 	}
+	
 	public void setDistance(Distance h,Distance g) {
 		this.h = h;
 		this.g = g;
@@ -31,6 +34,9 @@ public abstract class HeuristicSearcher extends AbsCommonSearcher {
 	@Override
 	public abstract ArrayList<Action> search(SearchDomain domain);
 
+	
+//Getters and Setters
+	
 	public Distance getH() {
 		return h;
 	}
