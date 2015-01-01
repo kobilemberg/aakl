@@ -1,13 +1,6 @@
 package model.test;
 
-import java.util.ArrayList;
-
-import model.algorithems.Action;
-
-import model.algorithems.AstarHeuristicSearcher;
-import model.algorithems.BFSCommonSearcher;
-import model.algorithms.distances.AirDistance;
-import model.domains.maze.MazeSearchDomain;
+import model.domains.tiles.TilesSearchDomain;
 
 public class Test {
 
@@ -17,6 +10,7 @@ public class Test {
 
 	public static void main(String[] args) 
 	{
+		/*
 		// new random Maze sized 10 x 10 with 50 walls
 		System.out.println("testing!");
 		MazeSearchDomain m = new MazeSearchDomain(5);
@@ -54,8 +48,11 @@ public class Test {
 		{
 			System.out.println(a.getActionName());
 		
-		}
-		//System.out.println("Done");
+		
+		
+		}*/
+		TilesSearchDomain tsd = new TilesSearchDomain(4);
+		System.out.println("\nDone.");
 	
 	}
 
