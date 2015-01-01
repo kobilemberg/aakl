@@ -18,7 +18,7 @@ public class Test {
 	public static void main(String[] args) 
 	{
 		// new random Maze sized 10 x 10 with 50 walls
-		System.out.println("testing");
+		System.out.println("testing!");
 		MazeSearchDomain m = new MazeSearchDomain(5);
 		// print the problem for debug
 		System.out.println(m.toString());
