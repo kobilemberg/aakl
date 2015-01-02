@@ -30,11 +30,12 @@ public class TilesSearchDomain implements SearchDomain {
 		while (canBeSolved == 0)
 		{
 			
-			
+			/* create the matrix and fill it with the numbers. */
 			for (int i = 0; i < temp.length; i++) {
 				temp[i] = i;
 			}
 			
+			/* mess up the matrix except the first one (00) */
 			Random rand = new Random();
 			for (int i = 1; i < temp.length; i++) {
 				int switchWith = rand.nextInt(temp.length-1)+1;
@@ -42,13 +43,12 @@ public class TilesSearchDomain implements SearchDomain {
 				temp[i] = temp[switchWith];
 				temp[switchWith] = tmp;
 			}
-			
+			/* make sure 00 goes left bottom. */
 			int tmp = size*size-1;
 			temp[0] = temp[tmp];
 			temp[tmp] = 0;
 			
-			
-			
+			/* check if the matrix is solavble */
 			int sum = 0;
 			
 			for (int i = 0; i < temp.length; i++) {
