@@ -2,9 +2,11 @@ package model.domains.maze;
 
 
 import java.util.ArrayList;
+
 import model.algorithems.Action;
 import model.algorithems.SearchDomain;
 import model.algorithems.State;
+
 import java.util.Random;
 
 public class MazeSearchDomain implements SearchDomain 
@@ -207,6 +209,7 @@ public class MazeSearchDomain implements SearchDomain
 			}
 			stringToRet+="\n";
 		}
+		 System.out.println();
 		return stringToRet;
 			
 	}

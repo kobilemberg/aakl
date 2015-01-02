@@ -52,7 +52,7 @@ public class Test {
 		// print the solution for debug
 		//System.out.println(actionBFS.toString);
 		
-		 
+		 System.out.println("");
 		
 		
 		

@@ -93,6 +93,7 @@ public class BFSCommonSearcher extends AbsCommonSearcher {
 				}
 			}
 		}
+		 System.out.println("");
 		System.out.println("Cannot resolve");
 		return pathToRet;
 		
