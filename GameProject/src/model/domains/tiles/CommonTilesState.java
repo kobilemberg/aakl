@@ -1,13 +1,50 @@
 package model.domains.tiles;
 
+import java.util.Random;
+
 import model.algorithems.CommonState;
 import model.algorithems.State;
 
 public class CommonTilesState extends CommonState {
-
+	
+	private int[] matrix;
+	private int size=4;
 	public CommonTilesState(String stateName, double f, double g) {
 		super(stateName, f, g);
-		// TODO Auto-generated constructor stub
+		this.matrix = new int[size*size];
+	}
+	
+
+	public void setMatrix(int[] matrix) {
+		this.matrix = matrix;
+	}
+
+	public int[] getMatrix() {
+		return matrix;
+	}
+
+
+	
+	
+	
+	public void printMatrix(){
+		
+		for (int i = 0; i < this.matrix.length; i++) 
+		{
+			if (this.matrix[i] != 0)
+			{
+				System.out.print(String.format("%02d",this.matrix[i])+" ");
+			}
+			if ((i+1) % size == 0)
+			{
+				System.out.println("");				
+			}
+		}
+	/*
+		for (int i = 0; i < this.matrix.length; i++) {
+			System.out.println(i+":"+String.format("%02d",this.matrix[i])+"");
+		}
+		*/
 	}
 
 	public CommonTilesState(String stateName, double f, double g,
