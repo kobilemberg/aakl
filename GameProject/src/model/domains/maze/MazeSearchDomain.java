@@ -36,7 +36,7 @@ public class MazeSearchDomain implements SearchDomain
 	public void buildMazeMatrix()
 	{
 		int [] objectsToFill = {0,-1};
-		
+		int numOfBlocks=0;
 		Random random = new Random();
 		for (int i=1;i<size;i++)
 		{
@@ -45,7 +45,17 @@ public class MazeSearchDomain implements SearchDomain
 				if (mazeMatrix[i][j]==0)
 				{
 					int rangeForRandomNumber =2;
-					mazeMatrix[i][j] = objectsToFill[random.nextInt(rangeForRandomNumber)];
+					int num = objectsToFill[random.nextInt(rangeForRandomNumber)];
+					if (num == -1)
+					{
+						numOfBlocks++;
+						if (numOfBlocks/size*size <= 0.50)
+							mazeMatrix[i][j] = num;//objectsToFill[random.nextInt(rangeForRandomNumber)];
+					}
+					else 
+						mazeMatrix[i][j] =0;
+					
+					
 				}
 			}
 		}

@@ -25,4 +25,5 @@ public interface State
 	public double getG();
 	public State getCameFromState();
 	public void setCameFromState(State cameFrom);
+	
 }
