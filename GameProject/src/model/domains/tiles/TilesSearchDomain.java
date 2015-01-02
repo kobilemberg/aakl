@@ -15,8 +15,7 @@ public class TilesSearchDomain implements SearchDomain {
 	private CommonTilesState startState;
 	private CommonTilesState goalState;
 	public TilesSearchDomain(int size) {
-		this.startState = new CommonTilesState("StartState", 0, 0);
-		this.startState.setMatrix(buildMatrix());
+		this.setStartState(new CommonTilesState("StartState", 0, 0));
 		this.startState.printMatrix();
 		System.out.println("");
 		this.goalState = new CommonTilesState("GoalState", 0, 0);
@@ -88,22 +87,13 @@ public class TilesSearchDomain implements SearchDomain {
 		
 	}
 	
-	
-	public State getStartState() {
-		return this.startState;
-	}
+
 
 	public State getGoalState() {
 		return this.goalState;
 	}
 
-	public void setStartState(State state) {
-		this.startState = state;
-	}
 
-	public void setGoalState(State state) {
-		this.goalState = state;
-	}
 
 	public void setSize(int size) {
 		this.size = size;
@@ -118,5 +108,23 @@ public class TilesSearchDomain implements SearchDomain {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+	public State getStartState() {
+		return startState;
+	}
+
+
+	public void setStartState(State state) {
+		this.startState = (CommonTilesState)state;
+		
+	}
+
+
+	public void setGoalState(State state) {
+		this.goalState = (CommonTilesState)state;		
+	}
+
+
 
 }
