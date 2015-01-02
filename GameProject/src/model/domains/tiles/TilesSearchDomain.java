@@ -24,10 +24,10 @@ public class TilesSearchDomain implements SearchDomain {
 	public int[] buildMatrix()
 	{
 		
-		int canBeSolved = 0;
+		boolean canBeSolved = false;
 		int[] temp = new int[this.size*this.size];
 		
-		while (canBeSolved == 0)
+		while (canBeSolved == false)
 		{
 			
 			/* create the matrix and fill it with the numbers. */
@@ -49,41 +49,57 @@ public class TilesSearchDomain implements SearchDomain {
 			temp[tmp] = 0;
 			
 			/* check if the matrix is solavble */
-			int sum = 0;
-			
-			for (int i = 0; i < temp.length; i++) {
-				int count = 0;
-				for (int j = i; j < temp.length; j++) {
-					if ((temp[j] < temp[i]) && (temp[j] != 0))
-						count++;
-				}
-				sum += count;
-				//System.out.println(temp[i]+" "+count+" numbers");
-			}
-			
-			if (sum % 2 == 0){
-				System.out.println("Matrix made. Can be solved, sum is "+sum+"\n");
-				canBeSolved = 1;
-				
-				for (int i = 0; i < temp.length; i++) {
-					if (temp[i] != 0)
-					{
-						System.out.print(String.format("%02d",temp[i])+" ");
-					}
-					if ((i+1) % size == 0){
-						System.out.println("");				
-					}
-				}
-			}
-			else
-			{
-				System.out.println("Matrix made. Can not be solved, sum is "+sum+". Retrying.");
-			}	
+			canBeSolved = checkIfSolveable(temp);
 		}	
 		return temp;
 	}
 		
+	public int evaluateMatrix(int[] matrix)
+	{
+		int sum = 0;
 		
+		for (int i = 0; i < matrix.length; i++) 
+		{
+			int count = 0;
+			for (int j = i; j < matrix.length; j++) {
+				if ((matrix[j] < matrix[i]) && (matrix[j] != 0))
+					count++;
+			}
+			sum += count;
+			//System.out.println(temp[i]+" "+count+" numbers");
+			
+		}
+		return sum;
+		
+	}
+	
+	public boolean checkIfSolveable(int[] matrix){
+		boolean canBeSolved = false;
+		
+		int sum = evaluateMatrix(matrix);
+		
+		if (sum % 2 == 0){
+			System.out.println("Matrix can be solved. sum is "+sum+"\n");
+			printMatrix(matrix);
+			canBeSolved = true;
+		}
+		return canBeSolved;
+	}
+	
+	public void printMatrix(int[] matrix){
+		for (int i = 0; i < matrix.length; i++) 
+		{
+			if (matrix[i] != 0)
+			{
+				System.out.print(String.format("%02d",matrix[i])+" ");
+			}
+			if ((i+1) % size == 0)
+			{
+				System.out.println("");				
+			}
+		}
+		
+	}
 		
 		
 		
