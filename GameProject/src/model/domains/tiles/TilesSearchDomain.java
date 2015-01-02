@@ -4,56 +4,71 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import model.algorithems.Action;
+import model.algorithems.CommonState;
 import model.algorithems.SearchDomain;
 import model.algorithems.State;
 
 public class TilesSearchDomain implements SearchDomain {
 	
 	int [] matrix;
-	private int size;
-	private State startState;
-	private State goalState;
-	
-	
+	private int size=4;
+	private CommonTilesState startState;
+	private CommonTilesState goalState;
 	public TilesSearchDomain(int size) {
-		this.size = size; 
-		this.matrix = new int[size*size];
-		this.matrix = buildMatrix();
+		this.startState = new CommonTilesState("StartState", 0, 0);
+		this.startState.setMatrix(buildMatrix());
+		this.startState.printMatrix();
+		System.out.println("");
+		this.goalState = new CommonTilesState("GoalState", 0, 0);
+		this.goalState.setMatrix(buildGoalMatrix());
+		this.goalState.printMatrix();
 	}
-	
+
+
 	public int[] buildMatrix()
 	{
 		
 		boolean canBeSolved = false;
-		int[] temp = new int[this.size*this.size];
-		
+		int[] matrix = buildGoalMatrix();
 		while (canBeSolved == false)
 		{
-			
-			/* create the matrix and fill it with the numbers. */
-			for (int i = 0; i < temp.length; i++) {
-				temp[i] = i;
-			}
-			
-			/* mess up the matrix except the first one (00) */
+			/* mess up the matrix except the last one (00) */
 			Random rand = new Random();
-			for (int i = 1; i < temp.length; i++) {
-				int switchWith = rand.nextInt(temp.length-1)+1;
-				int tmp = temp[i];
-				temp[i] = temp[switchWith];
-				temp[switchWith] = tmp;
+			for (int i = 0; i < matrix.length-1; i++) {
+				int switchWith = rand.nextInt(matrix.length-1);
+				int tmp = matrix[i];
+				matrix[i] = matrix[switchWith];
+				matrix[switchWith] = tmp;
 			}
-			/* make sure 00 goes left bottom. */
-			int tmp = size*size-1;
-			temp[0] = temp[tmp];
-			temp[tmp] = 0;
-			
-			/* check if the matrix is solavble */
-			canBeSolved = checkIfSolveable(temp);
+
+			/* check if the matrix is solvable */
+			canBeSolved = checkIfSolveable(matrix);
 		}	
-		return temp;
-	}
 		
+		return matrix;
+	}
+
+	public int[] buildGoalMatrix(){
+		int[] matrix= new int[size*size];
+		/* create the matrix and fill it with the numbers. */
+		for (int i = 1; i < matrix.length; i++) {
+			matrix[i-1] = i;
+		}
+		matrix[this.size*this.size-1] = 0;
+		return matrix;
+	}
+	public boolean checkIfSolveable(int[] matrix){
+		boolean canBeSolved = false;
+		
+		int sum = evaluateMatrix(matrix);
+		
+		if (sum % 2 == 0){
+			System.out.println("Matrix can be solved. sum is "+sum+"\n");
+			canBeSolved = true;
+		}
+		return canBeSolved;
+	}
+	
 	public int evaluateMatrix(int[] matrix)
 	{
 		int sum = 0;
@@ -73,39 +88,7 @@ public class TilesSearchDomain implements SearchDomain {
 		
 	}
 	
-	public boolean checkIfSolveable(int[] matrix){
-		boolean canBeSolved = false;
-		
-		int sum = evaluateMatrix(matrix);
-		
-		if (sum % 2 == 0){
-			System.out.println("Matrix can be solved. sum is "+sum+"\n");
-			printMatrix(matrix);
-			canBeSolved = true;
-		}
-		return canBeSolved;
-	}
 	
-	public void printMatrix(int[] matrix){
-		for (int i = 0; i < matrix.length; i++) 
-		{
-			if (matrix[i] != 0)
-			{
-				System.out.print(String.format("%02d",matrix[i])+" ");
-			}
-			if ((i+1) % size == 0)
-			{
-				System.out.println("");				
-			}
-		}
-		
-	}
-		
-		
-		
-
-
-
 	public State getStartState() {
 		return this.startState;
 	}
