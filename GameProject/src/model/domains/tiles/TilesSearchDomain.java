@@ -16,6 +16,7 @@ public class TilesSearchDomain implements SearchDomain {
 	private CommonTilesState goalState;
 	public TilesSearchDomain(int size) {
 		this.setStartState(new CommonTilesState("StartState", 0, 0));
+		
 		this.startState.printMatrix();
 		System.out.println("");
 		this.goalState = new CommonTilesState("GoalState", 0, 0);
@@ -117,6 +118,8 @@ public class TilesSearchDomain implements SearchDomain {
 
 	public void setStartState(State state) {
 		this.startState = (CommonTilesState)state;
+		this.startState.setMatrix(buildMatrix());
+		
 		
 	}
 
