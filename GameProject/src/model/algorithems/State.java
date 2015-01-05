@@ -12,7 +12,7 @@ public interface State
 	public  void setCameFrom_Action(Action cameFrom_Action);
 
 	public  Integer[] getPlace();
-
+	
 	public  boolean equals(State o);
 
 	public  String toString();

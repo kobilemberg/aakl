@@ -3,7 +3,7 @@ package model.domains.maze;
 import model.algorithems.CommonState;
 import model.algorithems.State;
 
-public class CommonMazeState extends CommonState {
+public class CommonMazeState extends CommonState implements Comparable<State> {
 
 	public CommonMazeState(String stateName, double f, double g) {
 		super(stateName, f, g);
@@ -17,5 +17,12 @@ public class CommonMazeState extends CommonState {
 			return 1;
 		return 0;
 	}
+
+	public int compareTo(State o) {
+		return compare(this,o);
+			
+	}
+
+
 
 }

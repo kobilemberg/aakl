@@ -111,20 +111,36 @@ public abstract class CommonState implements State,Comparator<State>
 	
 	
 	
+//	@Override
+//	public boolean equals(State o)
+//	{
+//		return this.stateName.equals(o.getStateName());		
+//	}
 	
-	public boolean equals(State o)
-	{
-		return this.stateName.equals(o.getStateName());		
-	}
 
 	
 	@Override
 	public String toString() 
 	{
-		return "State [stateName=" + stateName + ", g=" + g
-				+ ", cameFrom_Action=" + cameFrom_Action + ", f=" + f + "]";
+		return this.getStateName();
 	}
 
+	
+
+//	public boolean equals(State o) {
+//		// TODO Auto-generated method stub
+//		return this.stateName.equals(o.getStateName());
+//	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return this.toString().equals(obj.toString());
+	}
+	
+	
+	public boolean equals(State o) {
+		return this.getStateName().equals(o.getStateName());
+	}
 	
 	
 

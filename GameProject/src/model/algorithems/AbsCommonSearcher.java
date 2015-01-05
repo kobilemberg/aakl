@@ -57,6 +57,7 @@ public abstract class AbsCommonSearcher implements Searcher
 		evaluatedNodes=0; 
 		openList = new PriorityQueue<State>(1, comp);
 		closedSet = new HashMap<String, State>();
+		
 	}
 	
 	public int getNumOfEvaluatedNodes()

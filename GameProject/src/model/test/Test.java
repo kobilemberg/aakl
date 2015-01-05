@@ -20,7 +20,7 @@ public class Test {
 		
 		// new random Maze sized 10 x 10 with 50 walls
 		System.out.println("testing!");
-		MazeSearchDomain m = new MazeSearchDomain(5);
+		MazeSearchDomain m = new MazeSearchDomain(3);
 		// print the problem for debug
 		System.out.println(m.toString());
 		AstarHeuristicSearcher aStar=new AstarHeuristicSearcher(m,new AirDistance(),new AirDistance());
@@ -44,7 +44,8 @@ public class Test {
 
 		
 		System.out.println("\n \n \n *********************now printing BFS for maze game domain***********************");
-		BFSCommonSearcher bfs = new BFSCommonSearcher(m,new  AirDistance());
+		m = new MazeSearchDomain(2);
+		BFSCommonSearcher bfs = new BFSCommonSearcher();
 		long bfsStartTime = System.nanoTime();
 		ArrayList<Action> actionsBFS = bfs.search(m);
 		System.out.println("The time that takes BFS to search in our maze is: "+((System.nanoTime()-aStarStartTime)*0.000001) +" in mili seconds");
