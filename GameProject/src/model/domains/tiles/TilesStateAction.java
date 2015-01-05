@@ -7,8 +7,21 @@ import model.algorithems.State;
 
 public class TilesStateAction implements Action, Serializable {
 
-	public TilesStateAction() {
-		// TODO Auto-generated constructor stub
+	private int[] action;
+	private String actionName;
+	
+	public TilesStateAction(int[] action) {
+		this.action = action;
+		this.actionName="";
+		if (action[0]==1) 
+			this.actionName += " GoUp";
+		if (action[0]==-1)                                
+			this.actionName += " GoDwon";
+		if (action[1]==1) 
+			this.actionName += " GoRight";
+		if (action[1]==-1) 
+			this.actionName += " GoLeft";
+		
 	}
 
 	public State doAction(State state) {

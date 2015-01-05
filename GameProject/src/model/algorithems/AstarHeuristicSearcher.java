@@ -23,7 +23,9 @@ public class AstarHeuristicSearcher extends HeuristicSearcher
 	public String getName() 
 	{
 		return "AstarHeuristicSearcher";
+		
 	}
+
 	public ArrayList<Action> search(SearchDomain domain)
 	{
 		this.h = new AirDistance();
