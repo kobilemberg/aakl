@@ -7,19 +7,19 @@ import model.algorithems.State;
 
 public class CommonTilesState extends CommonState {
 	
-	private int[] matrix;
-	private int size=4;
+	private Integer[] matrix;
+	private Integer size=4;
 	public CommonTilesState(String stateName, double f, double g) {
 		super(stateName, f, g);
-		this.matrix = new int[size*size];
+		this.matrix = new Integer[size*size];
 	}
 	
 
-	public void setMatrix(int[] matrix) {
+	public void setMatrix(Integer[] matrix) {
 		this.matrix = matrix;
 	}
 
-	public int[] getMatrix() {
+	public Integer[] getMatrix() {
 		return matrix;
 	}
 
