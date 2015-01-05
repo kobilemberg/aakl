@@ -14,7 +14,26 @@ public class CommonTilesState extends CommonState {
 		this.matrix = new Integer[size*size];
 	}
 	
-
+	public int evaluateMatrix()
+	{
+		Integer sum = 0;
+//		System.out.println(this.matrix.length);
+		
+		for (Integer i = 0; i < this.matrix.length; i++) 
+		{
+			Integer count = 0;
+			for (Integer j = i; j < this.matrix.length; j++) {
+				System.out.println("j:"+j+" "+this.matrix[j]);
+				if ((this.matrix[j] < this.matrix[i]) && (this.matrix[j] != 0))
+					count++;
+			}
+			sum += count;
+			//System.out.println(temp[i]+" "+count+" numbers");
+			
+		}
+		return sum;
+	}
+	
 	public void setMatrix(Integer[] matrix) {
 		this.matrix = matrix;
 	}
@@ -26,6 +45,7 @@ public class CommonTilesState extends CommonState {
 
 	public String toString(){
 		String result = "";
+		System.out.println("State:"+this.getStateName()+" g:"+this.g+" f:"+this.f);
 		printMatrix();
 		return result;	
 	}

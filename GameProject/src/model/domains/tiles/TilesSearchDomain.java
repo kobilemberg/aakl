@@ -54,7 +54,10 @@ public class TilesSearchDomain implements SearchDomain {
 			}
 
 			/* check if the matrix is solvable */
-			canBeSolved = checkIfSolveable(matrix);
+			CommonTilesState temp=new CommonTilesState("temp", 1,1);
+			temp.setMatrix(matrix);
+			temp.setF(temp.evaluateMatrix());
+			canBeSolved = checkIfSolveable(temp);
 		}	
 		
 		return matrix;
@@ -69,36 +72,17 @@ public class TilesSearchDomain implements SearchDomain {
 		matrix[this.size*this.size-1] = 0;
 		return matrix;
 	}
-	public boolean checkIfSolveable(Integer[] matrix){
+	public boolean checkIfSolveable(CommonTilesState state){
 		boolean canBeSolved = false;
 		
-		int sum = evaluateMatrix(matrix);
-		
-		if (sum % 2 == 0){
-			System.out.println("Matrix can be solved. sum is "+sum+"\n");
+		if (state.getF() % 2 == 0){
+//			System.out.println("Matrix can be solved. sum is "+sum+"\n");
 			canBeSolved = true;
 		}
 		return canBeSolved;
 	}
 	
-	public int evaluateMatrix(Integer[] matrix)
-	{
-		int sum = 0;
-		
-		for (int i = 0; i < matrix.length; i++) 
-		{
-			int count = 0;
-			for (int j = i; j < matrix.length; j++) {
-				if ((matrix[j] < matrix[i]) && (matrix[j] != 0))
-					count++;
-			}
-			sum += count;
-			//System.out.println(temp[i]+" "+count+" numbers");
-			
-		}
-		return sum;
-		
-	}
+
 	
 
 
