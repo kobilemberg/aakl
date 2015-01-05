@@ -7,6 +7,7 @@ import java.util.Random;
 import model.algorithems.Action;
 import model.algorithems.SearchDomain;
 import model.algorithems.State;
+import model.domains.maze.MazeStateAction;
 
 public class TilesSearchDomain implements SearchDomain {
 	
@@ -22,8 +23,10 @@ public class TilesSearchDomain implements SearchDomain {
 		System.out.println("");
 		this.goalState = new CommonTilesState("GoalState", 0, 0);
 		this.goalState.setMatrix(buildGoalMatrix());
-		this.goalState.printMatrix();
+		//this.goalState.printMatrix();
+		//(ArrayList<TilesStateAction>) ArrayList<Action> actionList = getActions(startState);
 		getActions(startState);
+		//startState.toString();
 		
 		
 	}
@@ -115,19 +118,32 @@ public class TilesSearchDomain implements SearchDomain {
 		Integer[] result = {location % this.size,location / this.size};
 		return result;
 	}
+	
+
+	
 	public ArrayList<Action> getActions(State state) {
+		
 		ArrayList<Action> actionToRet = new ArrayList<Action>();
 		Integer x = getBlankLocation((CommonTilesState)state)[0];
 		Integer y = getBlankLocation((CommonTilesState)state)[1];
-		System.out.println("x:"+x+" y:"+y);
-		if ((x-1)>=0){
-			if((y-1)>=0){
-				actionToRet.add(action);
-			}
+//		System.out.println("Checking for space in location ("+x+","+y+")");
+		if (x-1 >=0)
+		{
+			actionToRet.add(new TilesStateAction(new int [] {-1,0}));
+		}
+		if (y-1 >= 0)
+		{
+			actionToRet.add(new TilesStateAction(new int [] {0,-1}));
 		}
 		
-		
-		
+		if (x+1 < this.size)
+		{
+			actionToRet.add(new TilesStateAction(new int [] {1,0}));
+		}
+		if (y+1 < this.size)
+		{
+			actionToRet.add(new TilesStateAction(new int [] {0,1}));
+		}
 		return actionToRet;
 	}
 

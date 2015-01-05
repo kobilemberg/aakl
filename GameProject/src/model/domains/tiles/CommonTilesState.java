@@ -24,7 +24,11 @@ public class CommonTilesState extends CommonState {
 	}
 
 
-	
+	public String toString(){
+		String result = "";
+		printMatrix();
+		return result;	
+	}
 	
 	
 	public void printMatrix(){

@@ -7,20 +7,22 @@ import model.algorithems.State;
 
 public class TilesStateAction implements Action, Serializable {
 
-	private int[] action;
-	private String actionName;
+	private int[] action; // (1,1)
+	private String actionName; // go up .. 
 	
 	public TilesStateAction(int[] action) {
+		//System.out.println("Creating " + action[0]+" "+action[1]);
 		this.action = action;
 		this.actionName="";
 		if (action[0]==1) 
-			this.actionName += " GoUp";
+			this.actionName += String.format("%5s", "Up");
 		if (action[0]==-1)                                
-			this.actionName += " GoDwon";
+			this.actionName += String.format("%5s", "Down");
 		if (action[1]==1) 
-			this.actionName += " GoRight";
+			this.actionName += String.format("%5s", "Right");
 		if (action[1]==-1) 
-			this.actionName += " GoLeft";
+			this.actionName += String.format("%5s", "Left");
+		//System.out.println("Name: "+this.actionName);
 		
 	}
 
@@ -30,8 +32,8 @@ public class TilesStateAction implements Action, Serializable {
 	}
 
 	public String getActionName() {
-		// TODO Auto-generated method stub
-		return null;
+		String s = this.actionName;
+		return s;
 	}
 
 }
