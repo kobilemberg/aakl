@@ -44,7 +44,7 @@ public class Test {
 
 		
 		System.out.println("\n \n \n *********************now printing BFS for maze game domain***********************");
-		m = new MazeSearchDomain(2);
+		//m = new MazeSearchDomain(2);
 		BFSCommonSearcher bfs = new BFSCommonSearcher();
 		long bfsStartTime = System.nanoTime();
 		ArrayList<Action> actionsBFS = bfs.search(m);

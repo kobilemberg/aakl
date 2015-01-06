@@ -65,7 +65,8 @@ public class BFSCommonSearcher extends AbsCommonSearcher {
 			
 			if (state.equals(goalState))
 			{
-				ArrayList<Action> actions = generatePathToGoal(state);
+				//ArrayList<Action> actions = generatePathToGoal(state);
+				ArrayList<Action> actions = reconstructPath(state);
 				return actions;
 			}
 			

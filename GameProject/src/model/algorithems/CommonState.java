@@ -24,6 +24,7 @@ public abstract class CommonState implements State,Comparator<State>
 	{
 		this.stateName=stateName;
 		this.g = g;
+		
 		this.cameFrom_Action=null;
 		this.f= f;
 		this.CameFromState = null;
