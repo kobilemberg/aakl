@@ -11,7 +11,8 @@ import model.algorithms.comparators.AlgComperator;
 public abstract class AbsCommonSearcher implements Searcher 
 {
 
-	 PriorityQueue<State> openList; //= new PriorityQueue<State>();
+	 PriorityQueue<State> openList;
+	 PriorityQueue<State> closeList;//= new PriorityQueue<State>();
 	 HashMap<String,State> closedSet; //= new HashMap<String, State>();
 	 int evaluatedNodes=0;
 	 SearchDomain sd;
@@ -56,6 +57,7 @@ public abstract class AbsCommonSearcher implements Searcher
 	{
 		evaluatedNodes=0; 
 		openList = new PriorityQueue<State>(1, comp);
+		closeList = new PriorityQueue<State>(1, comp);
 		closedSet = new HashMap<String, State>();
 		
 	}

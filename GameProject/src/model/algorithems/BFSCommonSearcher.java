@@ -4,12 +4,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 
+import model.algorithms.distances.AirDistance;
 
 
-//import model.algorithm.Action;
-//import model.algorithm.SearchDomain;
-//import model.algorithm.State;
-import model.algorithms.comparators.AlgComperator;
+
+
+
+
+
+
+
 
 
 public class BFSCommonSearcher extends AbsCommonSearcher {
@@ -17,12 +21,15 @@ public class BFSCommonSearcher extends AbsCommonSearcher {
 	private Distance h;
 	/*private HashMap<String, State> camefromMap;*/
 	private HashMap<String,State> existsInTheQueue;
-	private PriorityQueue<State > closeList;
+	//private PriorityQueue<State > closeList;
 	
 	public BFSCommonSearcher(SearchDomain sd,Distance h) 
 	{
-//		//startComparator(new AlgComperator());
-//		//super(sd);
+//		//
+		super(sd);
+		this.startState = sd.getStartState();
+		this.goalState = sd.getGoalState();
+		//startComparator(new AlgComperator());
 //		this.h = h;
 //		//this.cameFromMap = new HashMap<String, State>();
 //		this.existsInTheQueue = new HashMap<String, State>();
@@ -34,10 +41,10 @@ public class BFSCommonSearcher extends AbsCommonSearcher {
 	
 	public BFSCommonSearcher() 
 	{
-		
+		super();
 		//startComparator(new AlgComperator());
 		//this.cameFromMap = new HashMap<String, State>();
-		//super();
+		
 		//this.sd = sd;
 		//startComparator(new AlgComperator());
 		//this.existsInTheQueue = new HashMap<String, State>();
@@ -45,77 +52,74 @@ public class BFSCommonSearcher extends AbsCommonSearcher {
 		//this.openList = new PriorityQueue<State>();
 	}
 	
-	public ArrayList<Action> search(SearchDomain domain) {	
-		PriorityQueue<State> closedList = new PriorityQueue<State>();
-		PriorityQueue<State> NewopenList = new PriorityQueue<State>();
+	public ArrayList<Action> search(SearchDomain domain) {		
 		
-		State start = domain.getStartState();
-		State goal = domain.getGoalState();
-		start.setF(0);
+		this.startState = domain.getStartState();
+		this.goalState = domain.getGoalState();
+		this.openList.add(startState);
 		
-		NewopenList.add(start);
-		while (!NewopenList.isEmpty())
+		while (!openList.isEmpty())
 		{
-			State current = NewopenList.poll();
-			closedList.add(current);
+			State state = openList.poll();
+			closeList.add(state);
 			
-			if (current.equals(goal))
+			if (state.equals(goalState))
 			{
-				//ArrayList<Action> actions = generatePathToGoal(current);
-				ArrayList<Action> actions = reconstructPath(current);
+				ArrayList<Action> actions = generatePathToGoal(state);
 				return actions;
 			}
 			
 			//HashMap<Action, State> nextStates = domain.getAllPossibleMoves(state);
-			
-			for(Action action : domain.getActions(current))
+			for (Action a : domain.getActions(state))
 			{
-				
-				State next = action.doAction(current);
-				double newPathPrice = current.getF()+next.getF();
-				if (!NewopenList.contains(next) && !closedList.contains(next))
+				State nextState = a.doAction(state);
+				//System.out.println(a.getActionPrice());
+				//Distance distance = new AirDistance();
+				double newPathPrice = state.getF() +a.getActionPrice();
+				//double newPathPrice = distance.getDistance(state, nextState);
+				if (!openList.contains(nextState) && !closeList.contains(nextState))
 				{
-					
-					
-					next.setCameFromState(current);
-					next.setCameFrom_Action(action);
-					next.setF(newPathPrice);
+					nextState.setCameFromState(state);
+					nextState.setCameFrom_Action(a);
+					nextState.setF(newPathPrice);
 										
-					NewopenList.add(next);
-					next.setCameFromState(current);
-					next.setCameFrom_Action(action);
+					openList.add(nextState);
 				}
 				else
-				{	
-					//next is in open or next is in close
-					if (newPathPrice < next.getF())
+				{					
+					if (newPathPrice < nextState.getF())
 					{
-						
-						
-						if (!NewopenList.contains(next))
+						if (!openList.contains(nextState))
 						{
-							//System.out.println("Not in NewOpenList");
-							//next.setF(newPathPrice);
-							closedList.remove(next);
-							next.setF(newPathPrice);
-							NewopenList.add(next);
+//							//me
+							//nextState.setF(newPathPrice);
+//							nextState.setCameFromState(state);
+//							nextState.setCameFrom_Action(a);
+//							
 							
+							openList.add(nextState);
+							//me:
+							//me
+//							nextState.setCameFromState(state);
+//							nextState.setCameFrom_Action(a);
 						}
-						
-							
 						else {
-							//System.out.println("in NewOpenList");
-							next.setF(newPathPrice);
-							closedList.add(next);
-							//NewopenList.remove(next);
-							//NewopenList.add(next);
+							
+							
+//							//me
+//							nextState.setCameFromState(state);
+//							nextState.setCameFrom_Action(a);
+//							
+							nextState.setF(newPathPrice);
+							openList.remove(nextState);
+							openList.add(nextState);
 						}
 					}
 				}
+					
 			}
-			
-		}
-		System.out.println("Cannot resolve");	
+		}	
+		System.out.println("un resolved domain");		
 		return null;
 	}
 			
@@ -154,12 +158,12 @@ public class BFSCommonSearcher extends AbsCommonSearcher {
 	private ArrayList<Action> generatePathToGoal(State state) {
 		// TODO Auto-generated method stub
 		ArrayList<Action> actions = new ArrayList<Action>();
-		System.out.println("Generete");
+		
 		do
 		{
 			actions.add(0, state.getCameFrom_Action());
 			state = state.getCameFromState();			
-		} while (state.getCameFromState() != null);
+		} while (state.getCameFrom_Action() != null&&state.getCameFromState()!=null );
 		
 		return actions;
 	}

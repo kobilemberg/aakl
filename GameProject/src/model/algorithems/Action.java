@@ -5,4 +5,5 @@ public interface Action
 {
 	State doAction(State state);
 	String getActionName();
+	public int getActionPrice();
 }

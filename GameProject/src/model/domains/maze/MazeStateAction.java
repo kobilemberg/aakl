@@ -7,6 +7,7 @@ public class MazeStateAction implements Action
 {
 	private String actionName;
 	private int[] action;
+	private int actionPrice;
 	
 	//the CTOR will get the action that we need to do
 	public MazeStateAction(int[] action) 
@@ -21,6 +22,7 @@ public class MazeStateAction implements Action
 			this.actionName += " GoRight";
 		if (action[1]==-1) 
 			this.actionName += " GoLeft";
+		this.actionPrice =1;
 		
 	}
 
@@ -35,7 +37,13 @@ public class MazeStateAction implements Action
 	{
 		return this.actionName;
 	}
-
+	
+	public int getActionPrice() 
+	{
+		if (this.actionName.length()>8) //diagonal
+			return this.actionPrice+1;
+		return actionPrice;
+	}
 
 	@Override
 	public String toString() {
