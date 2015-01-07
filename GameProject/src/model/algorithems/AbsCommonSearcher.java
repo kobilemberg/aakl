@@ -12,8 +12,8 @@ public abstract class AbsCommonSearcher implements Searcher
 {
 
 	 PriorityQueue<State> openList;
-	 PriorityQueue<State> closeList;//= new PriorityQueue<State>();
-	 HashMap<String,State> closedSet; //= new HashMap<String, State>();
+	 PriorityQueue<State> closeList;
+
 	 int evaluatedNodes=0;
 	 SearchDomain sd;
 	 State startState;
@@ -52,13 +52,25 @@ public abstract class AbsCommonSearcher implements Searcher
 			}
 			return actionToRet;
 	}
+	public ArrayList<Action> generatePathToGoal(State state) {
+		
+		ArrayList<Action> actions = new ArrayList<Action>();
+		
+		do
+		{
+			actions.add(0, state.getCameFrom_Action());
+			state = state.getCameFromState();			
+		} while (state.getCameFrom_Action() != null&&state.getCameFromState()!=null );
+		
+		return actions;
+	}
 	 	
 	public void startComparator(Comparator<State> comp)
 	{
 		evaluatedNodes=0; 
 		openList = new PriorityQueue<State>(1, comp);
 		closeList = new PriorityQueue<State>(1, comp);
-		closedSet = new HashMap<String, State>();
+		
 		
 	}
 	
@@ -75,19 +87,20 @@ public abstract class AbsCommonSearcher implements Searcher
 		return "AbsCommonSearcher";
 	}
 	 	
-//closed list and open list methods:
+
 	
 	public void addStateToColsedList(State state)
 	{
-		 if(!this.closedSet.containsKey(state.getStateName()))
-		 {
-			 this.closedSet.put(state.getStateName(), state);
-		 }
+
+		 
+		 if(!closeList.contains(state))
+			 closeList.add(state);
 	}
 	 
 	public boolean isContainsClosedList(State state)
 	{
-		 return this.closedSet.containsKey(state.toString());
+		
+		return closeList.contains(state);
 	}
 	  
 	 
@@ -114,15 +127,7 @@ public abstract class AbsCommonSearcher implements Searcher
 		 return this.openList.isEmpty();
 	}
 	
-	public State getStateFromColsedList(String state_name)
-	{
-		return this.closedSet.get(state_name);
-	}
-	  
-	 
-	
-// Getters and setters	
-	
+
 	
 	public PriorityQueue<State> getOpenList() 
 	{
@@ -131,12 +136,7 @@ public abstract class AbsCommonSearcher implements Searcher
 	public void setOpenList(PriorityQueue<State> openList) {
 		this.openList = openList;
 	}
-	public HashMap<String, State> getClosedSet() {
-		return closedSet;
-	}
-	public void setClosedSet(HashMap<String, State> closedSet) {
-		this.closedSet = closedSet;
-	}
+
 	public int getEvaluatedNodes() {
 		return evaluatedNodes;
 	}
@@ -172,6 +172,15 @@ public abstract class AbsCommonSearcher implements Searcher
 	{
 		 this.sd = sd;
 	}
+
+	public PriorityQueue<State> getCloseList() {
+		return closeList;
+	}
+
+	public void setCloseList(PriorityQueue<State> closeList) {
+		this.closeList = closeList;
+	}
+	
 	
 
 }

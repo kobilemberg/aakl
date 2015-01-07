@@ -30,26 +30,14 @@ public class MyModel extends Observable implements Model,Task
 	}
 	
 	public void selectDomain(String args) {
-		// TODO Auto-generated method stub
-		// domain = domainFactory.createDomain(domainName)
+		
 		String[] arr = args.split(":");
 		String domainName = arr[0];
 		String domainArgs = arr[1];
-		// domain = domainFactory.createDomain(domainName)
 		
-		//searchDomain = new MazeSearchDomain(10);
 		searchDomain = domainFactory.CreateDomain(domainName);
 	}
-	/*public void selectalgorithm(String algorithmName) 
-	{
-		SearcherFactory algorithm  = new SearcherFactory();
-		SearcherCreator algorithmSearcher = algorithm.searcherCreator.get(algorithmName);
-		if (algorithmSearcher!=null)
-				algorithmSearcher.create();
-		//AstarHeuristicSearcher searcher = new AstarHeuristicSearcher();
-		//System.out.println(searcher.getSd().toString());
-		
-	}*/
+
 	public void selectAlgorithem(String algorithemName) {
 		// TODO Auto-generated method stub
 		System.out.println("Done!!!");
@@ -76,14 +64,14 @@ public class MyModel extends Observable implements Model,Task
 	}
 
 	public Solution getSolution() {
-		// TODO Auto-generated method stub
+		
 		return solution;
 	}
 	
 	
 
 	public void doTask() {
-		// TODO Auto-generated method stub
+		
 		solveDomain();
 	}
 

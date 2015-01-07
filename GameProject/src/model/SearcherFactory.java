@@ -17,7 +17,7 @@ public class SearcherFactory
 	{
 		public Searcher create() 
 		{
-			return new BFSCommonSearcher(null, null);
+			return new BFSCommonSearcher();
 		}
 	}
 	

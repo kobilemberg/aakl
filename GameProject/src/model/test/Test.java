@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import model.algorithems.Action;
 import model.algorithems.AstarHeuristicSearcher;
-
 import model.algorithems.BFSCommonSearcher;
+
 import model.algorithms.distances.AirDistance;
 import model.domains.maze.MazeSearchDomain;
 
@@ -20,7 +20,7 @@ public class Test {
 		
 		// new random Maze sized 10 x 10 with 50 walls
 		System.out.println("testing!");
-		MazeSearchDomain m = new MazeSearchDomain(3);
+		MazeSearchDomain m = new MazeSearchDomain(5);
 		// print the problem for debug
 		System.out.println(m.toString());
 		AstarHeuristicSearcher aStar=new AstarHeuristicSearcher(m,new AirDistance(),new AirDistance());
@@ -65,6 +65,10 @@ public class Test {
 		
 		
 		}
+		
+		
+	System.out.println("\n \n \n *********************Finished BFS***********************");
+
 		
 		System.out.println("\nDone.");
 	

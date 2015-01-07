@@ -2,7 +2,9 @@ package model;
 
 import java.util.Observer;
 
-public interface Model 
+import Task.Task;
+
+public interface Model extends Task
 
 {
 	void selectDomain(String domainName);

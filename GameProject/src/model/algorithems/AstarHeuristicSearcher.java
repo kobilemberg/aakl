@@ -3,6 +3,7 @@ package model.algorithems;
 import java.util.ArrayList;
 
 
+
 import model.algorithms.comparators.AlgComperator;
 import model.algorithms.distances.AirDistance;
 
@@ -41,7 +42,10 @@ public class AstarHeuristicSearcher extends HeuristicSearcher
 		{
 			State current = getStateFromOpenList();
 			if (current.equals(goalState))
-				return reconstructPath(current);
+			{
+				ArrayList<Action> actions = generatePathToGoal(current);
+				return actions;
+			}
 			removeStateFromOpenList(current);
 			addStateToColsedList(current);
 			for(Action action : sd.getActions(current))

@@ -8,9 +8,9 @@ public class TaskRunnable implements Runnable
 
 	private Task t;
 	
-	public TaskRunnable(Model model) 
+	public TaskRunnable(Task t) 
 	{
-		this.t = (Task)model;
+		this.t = t;
 	}
 
 	public void run() {

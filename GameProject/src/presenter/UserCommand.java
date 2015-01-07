@@ -72,6 +72,7 @@ public class UserCommand {
 			Thread t = new Thread(new TaskRunnable(model));
 			t.start();
 			return model;
+			
 		}
 		
 	}
